@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+frontend:
+build: ./frontend
+ports: ['3000:3000']
+backend:
+build: ./backend
+ports: ['8080:8080']
+depends_on: ['worker']
+worker:
+build: ./worker
+volumes:
+- ./data:/data
+deploy:
+resources:
+limits:
+memory: 1G
+cpus: '0.5'
